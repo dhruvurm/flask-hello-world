@@ -7,14 +7,29 @@ from flask import Flask
 
 app = Flask(__name__)
 
+# error handling
+app.config["DEBUG"] = True
+
 #use the decorator pattern to link the view function to the url
 
 @app.route("/")
 @app.route("/hello")
+@app.route("/test")
+@app.route("/name/<name>")
+def index(name):
+    if name.lower() == "michael":
+        return "hello, {}".format(name), 200
+    else:
+        return "Not found", 404
+
+
 
 #define the view using a function, which returns a string
-def hello_world():
-    return "Hello, world"
+
+def search():
+    return "hello"
+def search2():
+    return "bye bye"
 
 #start development server using the run method
 
